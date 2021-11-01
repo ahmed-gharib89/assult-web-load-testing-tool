@@ -5,6 +5,14 @@ import requests
 
 # Make the request and return the results
 def fetch(url):
+    """Fetch a url and return the response
+
+    Args:
+        url (string): The url to fetch
+
+    Returns:
+        string: The status code and the request time
+    """
     started_at = time.monotonic()
     response = requests.get(url)
     request_time = time.monotonic() - started_at
@@ -14,6 +22,13 @@ def fetch(url):
 # A function to take unmade requests from a queue, perform the work,
 # and add result to the queue
 async def worker(name, queue, results):
+    """A worker that fetches the results from the queue and returns a list of results .
+
+    Args:
+        name (string): The name of the worker
+        queue (asyncio.Queue): A Queue of urls to fetch
+        results (list): list of results
+    """
     loop = asyncio.get_event_loop()
     while True:
         url = await queue.get()
@@ -27,6 +42,14 @@ async def worker(name, queue, results):
 
 # Divide up work into batches and collect final results
 async def distribute_work(url, requests, concurrency, results):
+    """Distribute the number of requests to a queue .
+
+    Args:
+        url (string): The url to fetch
+        requests (int): Number of requests to make
+        concurrency (int): Number of concurrent requests
+        results (list): list of results
+    """
     queue = asyncio.Queue()
 
     # Add an item to the queue for each request we want to make
@@ -54,6 +77,13 @@ async def distribute_work(url, requests, concurrency, results):
 
 # Entrypoint to making requests
 def assault(url, requests, concurrency):
+    """Run the attack on a given URL .
+
+    Args:
+        url (string): The url to fetch
+        requests (int): Number of requests to make
+        concurrency (int): Number of concurrent requests
+    """
     results = []
     asyncio.run(distribute_work(url, requests, concurrency, results))
     print(results)
