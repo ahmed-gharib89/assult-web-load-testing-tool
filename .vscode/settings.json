@@ -1,0 +1,7 @@
+{
+    "python.defaultInterpreterPath": "~/.local/share/virtualenvs/assult-FUmGob41/bin/python",
+    "python.linting.enabled": true,
+    "editor.formatOnSave": true,
+    "python.formatting.provider": "black",
+
+}
