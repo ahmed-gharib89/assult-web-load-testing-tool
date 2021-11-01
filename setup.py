@@ -13,7 +13,7 @@ from shutil import rmtree
 from setuptools import find_packages, setup, Command
 
 # Package meta-data.
-NAME = "Assult"
+NAME = "Assault"
 DESCRIPTION = "A Python based web load testing tool."
 URL = "https://github.com/ahmed-gharib89/assult-web-load-testing-tool"
 EMAIL = "a.gharib89@yahoo.com"
